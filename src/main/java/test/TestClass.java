@@ -1,11 +1,11 @@
 package test;
 
-import main.BeanDefinition;
-import main.BeanFactory;
+import main.beans.BeansException;
+import main.beans.factory.BeanFactory;
+import main.beans.factory.config.BeanDefinition;
+import main.beans.factory.support.DefaultListableBeanFactory;
 import org.junit.Test;
 import test.bean.UserService;
-
-import javax.annotation.Resource;
 
 /*
  * TODO
@@ -19,17 +19,18 @@ public class TestClass
 {
 
     @Test
-    public void test_beanFactory()
+    public void test()
     {
-        BeanFactory beanFactory = new BeanFactory();
-
-        BeanDefinition beanDefinition = new BeanDefinition(new UserService());
+        DefaultListableBeanFactory beanFactory = new DefaultListableBeanFactory();
+        // 2.注册 bean
+        BeanDefinition beanDefinition = new BeanDefinition(UserService.class);
         beanFactory.registerBeanDefinition("userService", beanDefinition);
-
-        UserService userService = (UserService) beanFactory.getBean(
-                "userService");
+        // 3.第一次获取 bean
+        UserService userService = (UserService) beanFactory.getBean("userService");
         userService.queryUserInfo();
-
+        // 4.第二次获取 bean from Singleton
+        UserService userService_singleton = (UserService) beanFactory.getBean("userService");
+                userService_singleton.queryUserInfo();
     }
 
 }
