@@ -1,4 +1,4 @@
-package test.dao;
+package test.bean;
 
 import java.util.HashMap;
 import java.util.Map;

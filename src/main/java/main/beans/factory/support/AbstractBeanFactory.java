@@ -11,6 +11,8 @@ import main.beans.factory.config.BeanDefinition;
  *  @date   2023/3/4 14:22
  *
  * */
+
+
 public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory
 {
 
